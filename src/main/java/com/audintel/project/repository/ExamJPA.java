@@ -1,9 +1,9 @@
 package com.audintel.project.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.audintel.project.domain.Exam;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ExamJPA extends JpaRepository<Exam, String>,ExamDAO{
+public interface ExamJPA extends CrudRepository<Exam, String>,ExamDAO{
 
 }

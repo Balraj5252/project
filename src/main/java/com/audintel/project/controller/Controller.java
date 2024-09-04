@@ -15,21 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.audintel.project.domain.Question;
 import com.audintel.project.domain.Scores;
-import com.audintel.project.service.QuestionService;
 import com.audintel.project.service.ScoresService;
 
 @RestController
 @RequestMapping("/test")
 public class Controller {
 	@Autowired
-	QuestionService qs;
-	@Autowired
 	ScoresService ss;
 	@GetMapping("/questions")
 	public ResponseEntity getAllQuestions() {
 		try {
 			System.out.println("Help");
-			return new ResponseEntity(qs.getAllQuestions(),HttpStatus.OK);
+			return new ResponseEntity(null,HttpStatus.OK);
 		}  catch (Exception e) { 
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); 
 		} 
@@ -38,7 +35,7 @@ public class Controller {
 	public ResponseEntity insertQuestion(@RequestBody Question q) {
 		try {
 			System.out.println(q);
-			qs.addQuestion(q);
+			//qs.addQuestion(q);
 			System.out.println(q);
 			return new ResponseEntity("done",HttpStatus.OK);
 		}  
@@ -50,8 +47,8 @@ public class Controller {
 	@DeleteMapping("/Question/{id}")
 	public ResponseEntity deleteQuestion(@PathVariable(value="id") Integer id ) {
 		try {
-			qs.delete(id);
-			return new ResponseEntity(qs.getAllQuestions(),HttpStatus.OK);
+			//qs.delete(id);
+			return new ResponseEntity(null,HttpStatus.OK);
 		}  
 		catch (Exception e) 
 		{ 
@@ -61,7 +58,6 @@ public class Controller {
 	@PostMapping("/update")
 	public ResponseEntity updateQuestion(@RequestBody Question q) {
 		try {
-			qs.addQuestion(q);
 			return new ResponseEntity("done",HttpStatus.OK);
 		}  
 		catch (Exception e) 
@@ -74,7 +70,7 @@ public class Controller {
 		try {
 			//System.out.println("Help");
 			//qs.getQuestion(id);
-			return new ResponseEntity(qs.getQuestion(id),HttpStatus.OK);
+			return new ResponseEntity(null,HttpStatus.OK);
 		}  catch (Exception e) { 
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); 
 		} 
@@ -83,15 +79,12 @@ public class Controller {
 	public ResponseEntity getallQuestionsBySub(@PathVariable(value = "sub") String sub) {
 		try {
 			
-			return new ResponseEntity(qs.getAllQuestionBySub(sub),HttpStatus.OK);
+			return new ResponseEntity(null,HttpStatus.OK);
 		}  catch (Exception e) { 
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); 
 		} 
 	}
 	public Boolean validate(Integer id, String ans){
-		if(qs.getAnswerById(id).equalsIgnoreCase(ans)){
-			return true;
-		}
 		return false;
 	}
 	

@@ -1,9 +1,9 @@
 package com.audintel.project.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.audintel.project.domain.Faculty;
+import org.springframework.data.repository.CrudRepository;
 
-public interface FacultyJPA extends JpaRepository<Faculty, String>,FacultyDAO{
+public interface FacultyJPA extends CrudRepository<Faculty, String>,FacultyDAO{
 
 }

@@ -33,7 +33,7 @@ public class StudentController {
 	public ResponseEntity getAllStudents() {
 		try {
 			System.out.println("Help");
-			List<Student> lf = ss.getAllStudents();
+			List<Student> lf = new ArrayList<>();
 			if(lf != null){
 			return new ResponseEntity(lf,HttpStatus.OK);}
 			else{

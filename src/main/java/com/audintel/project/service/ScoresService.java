@@ -12,14 +12,14 @@ import com.audintel.project.repository.ScoresJPA;
 @Service
 @Transactional
 public class ScoresService {
-	@Autowired
+	//@Autowired
 	ScoresJPA sj;
 	
 	public Scores addScore(Scores s){
 		return sj.save(s);
 	}
 	public List<Scores> getAllScores(){
-		return sj.findAll();
+		return null;
 	}
 	public List<Integer> getExamsAttemptedbyStudent(String id){
 		return sj.getAttemptedExamsListByStudent(id);

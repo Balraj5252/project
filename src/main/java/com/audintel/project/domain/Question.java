@@ -3,21 +3,9 @@ package com.audintel.project.domain;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
 
-@Table(name = "question")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Question implements Serializable{
 	/**
@@ -25,34 +13,24 @@ public class Question implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer id;
 
-    @Column
+
 	String subject;
-	@Column(nullable = false)
 	//@NotNull
 	String sem;
-	@Column(nullable=false)
 	//@NotNull
 	String question;
 	//@NotNull
-	@Column(name = "option_1",nullable=false)
 	String option1;
 	//@NotNull
-	@Column(name = "option_2",nullable=false)
 	String option2;
 	//@NotNull
-	@Column(name = "option_3",nullable=false)
 	String option3;
 	//@NotNull
-	@Column(name = "option_4",nullable=false)
 	String option4;
 	//@NotNull
-	@Column(name = "answer",nullable=false)
 	String answer;
-	@ManyToMany( mappedBy="questions")
 	private Set<Exam>  exams;
 	
 	

@@ -10,12 +10,9 @@ import com.audintel.project.repository.StudentJPA;
 
 @Service
 public class StudentService {
-	@Autowired
+	//@Autowired
 	StudentJPA sj;
-	
-	public List<Student> getAllStudents(){
-		return sj.findAll();
-	}
+
 	
 	public String addStudent(Student s){
 		return sj.save(s).toString();

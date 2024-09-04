@@ -10,11 +10,11 @@ import com.audintel.project.repository.ExamJPA;
 
 @Service
 public class ExamsService {
-	@Autowired
+	//@Autowired
 	ExamJPA ej;
 	
 	public List<Exam> getAllExam(){
-		return ej.findAll();
+		return null;
 	}
 	
 	public String addExam(Exam e){

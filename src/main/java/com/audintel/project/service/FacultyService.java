@@ -12,13 +12,13 @@ import com.audintel.project.repository.FacultyJPA;
 public class FacultyService implements IFacultyService{
 	
 	
-	@Autowired
+	//@Autowired
 	FacultyJPA fj;
 	
 	public List<Faculty> getAllFaculty(){
 		try{
 			
-			return  fj.findAll();
+			return  null;
 		}catch(Exception e){
 			throw e;
 		}
