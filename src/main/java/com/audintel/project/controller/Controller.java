@@ -26,7 +26,7 @@ public class Controller {
 	public ResponseEntity getAllQuestions() {
 		try {
 			System.out.println("Help");
-			return new ResponseEntity(null,HttpStatus.OK);
+			return new ResponseEntity("you got it ",HttpStatus.OK);
 		}  catch (Exception e) { 
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); 
 		} 
