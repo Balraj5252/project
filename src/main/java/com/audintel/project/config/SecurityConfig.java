@@ -40,7 +40,7 @@ public class SecurityConfig {
         http
                 .authorizeExchange()
                 .pathMatchers("/test/**").permitAll()
-                .pathMatchers("/user/**").hasRole("ADMIN")
+                .pathMatchers("/user/**").permitAll()
                 .anyExchange().authenticated()
                 .and()
                 .httpBasic().and()
