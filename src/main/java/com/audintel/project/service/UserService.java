@@ -1,12 +1,9 @@
 package com.audintel.project.service;
 
-import com.audintel.project.domain.Exam;
+import au.com.bytecode.opencsv.CSVReader;
 import com.audintel.project.domain.user;
-import com.audintel.project.repository.ExamJPA;
-import com.opencsv.CSVReader;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;

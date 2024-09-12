@@ -1,17 +1,14 @@
 package com.audintel.project.controller;
 
+import java.util.List;
 import java.util.Map;
 
+import com.audintel.project.service.ControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.audintel.project.domain.Question;
 import com.audintel.project.domain.Scores;
@@ -19,16 +16,21 @@ import com.audintel.project.service.ScoresService;
 
 @RestController
 @RequestMapping("/test")
+@CrossOrigin(origins="http://localhost:3000")
 public class Controller {
+
+
 	@Autowired
-	ScoresService ss;
-	@GetMapping("/questions")
-	public ResponseEntity getAllQuestions() {
+	ControllerService cs;
+	@GetMapping(("/anagrams/{id}"))
+	public ResponseEntity getAllQuestions(@PathVariable(value="id") String id ) {
 		try {
-			System.out.println("Help");
-			return new ResponseEntity("you got it ",HttpStatus.OK);
-		}  catch (Exception e) { 
-			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); 
+			System.out.println("Help : " + id);
+			List<String> stringList =  cs.getAnagrams(id);
+			return new ResponseEntity(stringList,HttpStatus.OK);
+		}  catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity("error in try block", HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 	}
 	@PostMapping("/Question")
@@ -84,28 +86,5 @@ public class Controller {
 			return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); 
 		} 
 	}
-	public Boolean validate(Integer id, String ans){
-		return false;
-	}
 	
-	@PostMapping("/validate/{id}/{examid}")
-	public ResponseEntity validateStudentPaper(@PathVariable(value="id")String id,@PathVariable(value= "examid")Integer examid,@RequestBody Map<Integer,String> m){
-		try {
-			Integer x=0;
-			for (Map.Entry<Integer, String> entry : m.entrySet()) {
-				if(validate(entry.getKey(),entry.getValue())){
-					x++;
-				}
-			}
-			Scores s = new Scores();
-			s.setExamId(examid);
-			s.setStudentId(id);
-			s.setMark(x);
-			ss.addScore(s);
-			return new ResponseEntity("validated",HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
-		}
-	}
 }
